@@ -1,29 +1,7 @@
-const pizzas = [
-    {
-        id: 1,
-        sabor: "calabresa",
-        categoria: "salgada",
-        preco: 15.89
-    },
-    {
-        id: 2,
-        sabor: "brócolis",
-        categoria: "salgada",
-        preco: 20.00
-    },
-    {
-        id: 3,
-        sabor: "rúcula com tomate seco",
-        categoria: "salgada",
-        preco: 19.00
-    },
-    {
-        id: 4,
-        sabor: "morango com nutella",
-        categoria: "doce",
-        preco: 25.00
-    }
-];
+const express = require("express");
+const app = express();
+
+const pizzas = require ('./database/pizzas.json');
 
 const listarTodasAsPizzas = () => {
     let conteudo = "";
@@ -66,3 +44,5 @@ if(!pizzaEncontrada) return `a pizza sabor ${nomePizza} não foi encontrada`;
 return pizzaEncontrada
 };
 console.log(procurarPizzaPeloNome("calabresa"));
+
+app.listen(3000, () => console.log("o servidor ta on!"));
