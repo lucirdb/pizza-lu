@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+app.use(express.json());
+
 const pizzas = require ('./database/pizzas.json');
 
 const listarTodasAsPizzas = () => {
@@ -17,6 +19,10 @@ const listarTodasAsPizzas = () => {
     return conteudo;
 };
 
+app.get("/pizzas", (req , res) => {
+    return res.json(pizzas);
+})
+
 const adicionarPizza = function (sabor, categoria, preco) {
     const pizzaNova = {
         id: pizzas[pizzas.length-1].id + 1,
@@ -29,9 +35,6 @@ const adicionarPizza = function (sabor, categoria, preco) {
     console.log(`a pizza de ${sabor} foi adicionada com sucesso`);
 
 };
-
-adicionarPizza("Presunto", "salgado", 25);
-adicionarPizza("chocolate e confete", "doce", 35);
 
 console.log(listarTodasAsPizzas());
 
